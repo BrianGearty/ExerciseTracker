@@ -1,8 +1,23 @@
 const path = require("path");
 
 module.exports = function(app) {
-
+    // GET route for index.html
     app.get("/", function(req, res){
-        res.sendFile(path.join(__dirname + '/index.html'));
-    })
+        console.log("HOME HTML ROUTE HIT")
+        res.sendFile(path.join(__dirname, "../develop/public/index.html"));
+    });
+
+    // GET route for exercise.html
+    app.get("/exercise", function(req, res){
+        console.log("EXERCISE HTML ROUTE HIT")
+        res.sendFile(path.join(__dirname, "../develop/public/exercise.html"));
+    });
+
+    // GET route for stats.html
+    app.get("/stats", function(req, res) {
+        console.log("STATS HTML ROUTE HIT")
+        res.sendFile(path.join(__dirname, "../develop/public/stats.html"));
+    });
+
+
 }
