@@ -1,37 +1,12 @@
 var db = require("../models");
 
-module.exports = function (app) {
-    // GET route for homepage data
-    app.get("/", function (req, res) {
-        console.log("HOME DATA ROUTE")
-        db.Workout.find({})
-            .then(data => {
-                res.json(data);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    });
+module.exports = function(app) {
+    console.log('we are inside api-routes file!!')
 
-    // GET route for exercise data by ID
-    app.get("api/exercise/:id", function (req, res){
-        console.log("EXCERCISE BY ID ROUTE HIT")
-        db.Workout.find({
-            where: {
-                _id: req.params._id
-            }
-        })
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            res.json(err);
-        });
-    });
-
-    // GET route for stats data
-    app.get("api/stats", function(req, res){
-        db.Workout.find({})
+    // PUT route for exercise data by ID
+    app.put("/api/workouts/:id", function (req, res){
+        console.log("PUT EXCERCISE BY ID ROUTE HIT")
+        db.Workout.findOneAndUpdate({_id: req.params._id})
         .then(data => {
             res.json(data);
         })
@@ -41,8 +16,9 @@ module.exports = function (app) {
     });
 
     // GET route for workouts data
-    app.get("api/workouts", function(req, res){
-        db.Workout.find({})
+    app.get("/api/workouts/", function(req, res){
+        console.log("GET EXERCISE DATA ROUTE HIT")
+        db.Workout.find()
         .then(data => {
             res.json(data);
         })
@@ -52,8 +28,9 @@ module.exports = function (app) {
     });
 
     // POST route for workouts data
-    app.post("api/workouts", function(req, res){
-        db.Workout.find({})
+    app.post("/api/workouts", function(req, res){
+        console.log("WORKOUT POST API ROUTE HIT")
+        db.Workout.create({})
         .then(data => {
             res.json(data);
         })
@@ -61,5 +38,17 @@ module.exports = function (app) {
             res.json(err);
         });
     });
+
+    // GET route for stats data
+    app.get("/api/workouts/range", function(req, res){
+        db.Workout.find({}).limit(8)
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+    });
+
 
 };
