@@ -3,7 +3,7 @@ const app = express();
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
-const PORT = processs.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 mongoose.connect(
     process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
