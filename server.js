@@ -4,7 +4,17 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 
 const PORT = 3000;
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true, useFindAndModify: true });
+
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    }
+);
+
 
 app.use(logger("dev"));
 
